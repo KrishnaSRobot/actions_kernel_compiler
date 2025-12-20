@@ -3,6 +3,10 @@ name: PixelOS_Kernel_CI-aston
 on:
   workflow_dispatch:
 
+env:
+  CHATID: ${{ secrets.CHAT_ID }}
+  API_BOT: ${{ secrets.BOT_API }}
+
 jobs:
   Kernel_Build_CI:
     name: Kernel Build CI
