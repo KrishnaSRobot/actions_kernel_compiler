@@ -32,6 +32,7 @@ jobs:
       run: |
         git clone https://github.com/avalon-stuffs/android_kernel_oneplus_sm8650 --depth=1 -b 16 kernel/oneplus/sm8650
         git clone https://github.com/avalon-stuffs/android_kernel_oneplus_sm8650-modules --depth=1 -b 16 kernel/oneplus/sm8650-modules
+        git clone https://github.com/avalon-stuffs/android_kernel_oneplus_sm8650-devicetrees --depth=1 -b 16 kernel/oneplus/sm8650-devicetrees
     
     - name: Setup release name
       run: |
