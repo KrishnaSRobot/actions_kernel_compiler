@@ -98,7 +98,7 @@ tg_error() {
 build_kernel() {
 Start=$(date +"%s")
 
-	make -j$(nproc --all) O=out ARCH=arm64 2>&1 | tee error.log
+	make -j$(nproc --all) ARCH=arm64 O=out 2>&1 | tee error.log
 
 End=$(date +"%s")
 Diff=$(($End - $Start))
