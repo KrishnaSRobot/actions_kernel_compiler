@@ -98,20 +98,7 @@ tg_error() {
 build_kernel() {
 Start=$(date +"%s")
 
-	make -j$(nproc --all) O=out \
-                              ARCH=arm64 \
-                              LLVM=1 \
-                              LLVM_IAS=1 \
-                              AR=llvm-ar \
-                              NM=llvm-nm \
-                              LD=ld.lld \
-                              OBJCOPY=llvm-objcopy \
-                              OBJDUMP=llvm-objdump \
-                              STRIP=llvm-strip \
-                              CC=clang \
-                              CLANG_TRIPLE=aarch64-linux-gnu- \
-                              CROSS_COMPILE=aarch64-linux-android- \
-                              CROSS_COMPILE_ARM32=arm-linux-androideabi-  2>&1 | tee error.log
+	make -j$(nproc --all) O=out ARCH=arm64 2>&1 | tee error.log
 
 End=$(date +"%s")
 Diff=$(($End - $Start))
@@ -130,9 +117,7 @@ export TZ=Asia/Kolkata
 mkdir -p out
 
 make clean && make mrproper
-make "$DEFCONFIG1" O=out
-make "$DEFCONFIG2" O=out
-make "$DEFCONFIG3" O=out
+make ARCH=arm64 O=out gki_defconfig vendor/pineapple_GKI.config vendor/oplus/pineapple_GKI.config
 
 echo -e "$yellow << compiling the kernel >> \n $white"
 tg_post_msg "Successful triggered Compiling kernel for Avalon"
